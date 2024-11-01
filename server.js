@@ -1,4 +1,4 @@
-//<--------------- Starter code --------------->
+//<--------------- Require code --------------->
 const dotenv = require("dotenv");
 dotenv.config();
 const express = require("express");
@@ -11,6 +11,7 @@ mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
+const authController = require("./controllers/auth.js");
 
 //<--------------- Middleware --------------->
 // Middleware to parse URL-encoded data from forms
@@ -20,6 +21,7 @@ app.use(methodOverride("_method"));
 // Morgan for logging HTTP requests
 app.use(morgan('dev'));
 app.use(express.static('public'));
+app.use("/xkii/auth", authController);
 
 //<--------------- Get --------------->
 app.get("/xkii", async (req, res) => {
