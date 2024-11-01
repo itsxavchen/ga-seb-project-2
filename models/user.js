@@ -5,12 +5,11 @@ const artworkSchema = new mongoose.Schema({
     artistName: { type: String, required: true },
     materials: { type: String },
     size: { type: String },
-    imageUrl: { type: String, required: true, unique: true },
+    imageUrl: { type: String, required: true},
 });
 
 const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
-    email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     artworks: [artworkSchema],
 });
